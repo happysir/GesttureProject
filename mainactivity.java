@@ -1,11 +1,11 @@
 public class MainActivity extends Activity {
   private GestureOverlayView gov;
   private Gesture gesture;
-  private GestureLibrary gestureLib;
-  private TextView tv;
-  private EditText et;
+  private TextView textview;
+  private EditText editview;
   private String path;
   private File file; 
+  private GestureLibrary gestureLib;
   
   
   public void Oncreat(){
@@ -23,26 +23,25 @@ public class MainActivity extends Activity {
         textview.setText();
       }
       public void onGestureEnded(GestureOverlayView overlay, MotionEvent event) {
-  					gesture = overlay.getGesture();
+  	gesture = overlay.getGesture();
             if (gesture.getStrokesCount() == 1) {
               if (event.getAction() == MotionEvent.ACTION_UP) {
                   if (et.getText().toString().equals("")) {
-									tv.setText(" 请输入手势名称再保存 ");
-								} else {
-									tv.setText("正在保存手势...");
-									addMyGesture(et.getText().toString(), gesture); 
-								}
-							}
-            }else{
-              
+			textview.setText(" 请输入手势名称再保存 ");
+			} else {
+				textview.setText("正在保存手势...");
+			addMyGesture(et.getText().toString(), gesture); 
+			}
+		}
+            }else{            
             }});
             
           if(!getureLib.load()){
-            
+           textview.set
           }else {
-  		         Set<String> set = gestureLib.getGestureEntries(); 
-		        	Object ob[] = set.toArray();
-		        	loadAllGesture(set, ob);
+  	 	Set<String> set = gestureLib.getGestureEntries(); 
+		  Object ob[] = set.toArray();
+		  loadAllGesture(set, ob);
 		}
       }
      
@@ -67,21 +66,20 @@ public class MainActivity extends Activity {
 	}
 
 	public void findGesture(Gesture gesture) {
-	 
-			if (Environment.getExternalStorageState() != null) { 
-				if (!file.exists()) { 
-				} else { 
-					if (!gestureLib.load()) { 				 
-					} else {
-						List<Prediction> predictions = gestureLib.recognize(gesture);		 
-						if (!predictions.isEmpty()) {
-							Prediction prediction = predictions.get(0);		 
-							if (prediction.score >= 1) {								 
-							}
-						}
-					}
+		if (Environment.getExternalStorageState() != null) { 
+			if (!file.exists()) { 
+			} else { 
+			if (!gestureLib.load()) { 				 
+			} else {
+				List<Prediction> predictions = gestureLib.recognize(gesture);		 
+				if (!predictions.isEmpty()) {
+				Prediction prediction = predictions.get(0);		 
+				if (prediction.score >= 1) {								 
 				}
-			} else {			 
 			}
+			}
+		}
+		} else {			 
+		}
 	}       
 }
